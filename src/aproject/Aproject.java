@@ -45,7 +45,7 @@ public class Aproject {
             {
                 int a = random.nextInt(poolsize);
                 int b = random.nextInt(poolsize);
-                offspring[i] = rules[a].fitness > rules[b].fitness ? new Rule(Arrays.copyOf(rules[a].r, rulelength * rulecount)) : new Rule(Arrays.copyOf(rules[b].r, rulelength * rulecount));
+                offspring[i] = rules[a].fitness >= rules[b].fitness ? new Rule(Arrays.copyOf(rules[a].r, rulelength * rulecount)) : new Rule(Arrays.copyOf(rules[b].r, rulelength * rulecount));
             }
             //crossover
             int t;
@@ -71,7 +71,7 @@ public class Aproject {
                             case 2: r.r[i] -= 1 + random.nextInt(2); break;
                         }
                 }
-                for(int i = 0; i < rulelength; i++)
+                for(int i = 0; i < rulecount; i++)
                     if(r.r[i * rulelength + (rulelength - 1)] == 2)
                         r.r[i * rulelength + (rulelength - 1)] = random.nextInt(2);
             }

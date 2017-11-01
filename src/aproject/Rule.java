@@ -49,4 +49,13 @@ public class Rule {
                 return false;
         return true;
     }
+    
+    @Override
+    public String toString()
+    {
+        String s = "";
+        for(int i : r)
+            s += i;
+        return s;
+    }
 }

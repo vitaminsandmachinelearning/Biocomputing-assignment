@@ -7,9 +7,8 @@ import java.util.Arrays;
 public class Overlord {
     public static void main(String[] args) throws IOException
     {
-        
         Aproject apa;
-        int testcount = 100;
+        int testcount = 50;
         int progress = 0;
         
         int dataset = 2;
@@ -17,11 +16,11 @@ public class Overlord {
         int rulelength = 7;
         int min = 64;
         
-        int rulecount = 10;
-        int poolsize = 300;
+        int rulecount = 5;
+        int poolsize = 250;
         int generations = 500;
         
-        float mutationrate = 1 / (rulecount * rulelength) + 0.01f;
+        float mutationrate = 1 / (rulecount * rulelength) + 0.02f;
         
         int[] data = loader.load(rulelength, datacount, dataset);
         
