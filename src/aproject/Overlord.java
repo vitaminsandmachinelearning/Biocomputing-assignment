@@ -21,7 +21,7 @@ public class Overlord {
         int poolsize = 300;
         int generations = 500;
         
-        float mutationrate = 1 / (rulecount * rulelength);
+        float mutationrate = 1 / (rulecount * rulelength) + 0.01f;
         
         int[] data = loader.load(rulelength, datacount, dataset);
         

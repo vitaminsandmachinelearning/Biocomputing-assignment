@@ -31,7 +31,9 @@ public class Aproject {
         Rule[] rules = new Rule[poolsize];
         Rule[] offspring = new Rule[poolsize];
         for(int i = 0; i < poolsize; i++)
+        {
             rules[i] = new Rule(rulecount, rulelength, random);
+        }
         //GA
         for(int gen = 0; gen < generations; gen++)
         {
@@ -52,13 +54,13 @@ public class Aproject {
                 int c = random.nextInt(rulelength * rulecount - 1) + 1;
                 for(int j = c; j < rulelength * rulecount; j++)
                 {
-                    t = rules[i].r[j];
-                    rules[i].r[j] = rules[i+1].r[j];
-                    rules[i+1].r[j] = t;
+                    t = offspring[i].r[j];
+                    offspring[i].r[j] = offspring[i+1].r[j];
+                    offspring[i+1].r[j] = t;
                 }
             }
             //mutation
-            for(Rule r : rules)
+            for(Rule r : offspring)
             {
                 for(int i = 0; i < rulelength; i++)
                 {
