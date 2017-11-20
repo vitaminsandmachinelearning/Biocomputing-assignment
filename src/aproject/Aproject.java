@@ -2,8 +2,9 @@
 package aproject;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Random;
+import java.nio.charset.Charset;
+import java.nio.file.*;
+import java.util.*;
 
 public class Aproject {
     int datacount;
@@ -30,15 +31,20 @@ public class Aproject {
         //make rules
         Rule[] rules = new Rule[poolsize];
         Rule[] offspring = new Rule[poolsize];
+        ArrayList<String> lines = new ArrayList<>();
+        Path file = Paths.get("results" + dataset + ".txt");
+        
         for(int i = 0; i < poolsize; i++)
         {
             rules[i] = new Rule(rulecount, rulelength, random);
         }
+        
+        for(int i = 0; i < poolsize; i++)
+                rules[i].calculate(data, rulelength, rulecount);
+        
         //GA
         for(int gen = 0; gen < generations; gen++)
         {
-            for(int i = 0; i < poolsize; i++)
-                rules[i].calculate(data, rulelength, rulecount);
             //selection
             //select offspring with tournament
             for(int i = 0; i < poolsize; i++)
@@ -76,6 +82,20 @@ public class Aproject {
                         r.r[i * rulelength + (rulelength - 1)] = random.nextInt(2);
             }
             rules = Arrays.copyOf(offspring, poolsize);
+            for(int i = 0; i < poolsize; i++)
+                rules[i].calculate(data, rulelength, rulecount);
+            int w = 100000;
+            int b = 0;
+            int avg = 0;
+            for(Rule r : rules)
+            {
+                if(r.fitness < w)
+                    w = r.fitness;
+                if(r.fitness > b)
+                    b = r.fitness;
+                avg += r.fitness;
+            }
+            lines.add(w + "\t" + (avg / poolsize) + "\t" + b);
         }
         for(int i = 0; i < poolsize; i++)
                 rules[i].calculate(data, rulelength, rulecount);
@@ -89,6 +109,8 @@ public class Aproject {
                 bi = i;
             }
         }
+        if(bt == 64)
+            Files.write(file, lines, Charset.forName("UTF-8"));
         return rules[bi];
     } 
 }

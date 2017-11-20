@@ -8,7 +8,7 @@ public class Overlord {
     public static void main(String[] args) throws IOException
     {
         Aproject apa;
-        int testcount = 50;
+        int testcount = 100;
         int progress = 0;
         
         int dataset = 2;
@@ -18,7 +18,7 @@ public class Overlord {
         
         int rulecount = 5;
         int poolsize = 250;
-        int generations = 500;
+        int generations = 100;
         
         float mutationrate = 1 / (rulecount * rulelength) + 0.02f;
         
