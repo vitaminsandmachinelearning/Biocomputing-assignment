@@ -32,7 +32,7 @@ public class Aproject {
         Rule[] rules = new Rule[poolsize];
         Rule[] offspring = new Rule[poolsize];
         ArrayList<String> lines = new ArrayList<>();
-        Path file = Paths.get("results" + dataset + ".txt");
+        Path file = Paths.get("DS2VMRR5.txt");
         
         for(int i = 0; i < poolsize; i++)
         {
